@@ -101,6 +101,37 @@ rename(avg_height_inches = avg_height ,
   popularity_change_13_to_16 =rank_change_13_to_16 )
 ```
 
+You have 10 different files containing 100 students each. These files follow the naming structure:
+exams_0.csv
+exams_1.csv
+… up to exams_9.csv
+You are going to read each file into an individual data frame and then combine all of the entries into one data frame.
+First, create a variable called student_files and set it equal to the list.files() of all of the CSV files we want to import.
 
+Read each file in student_files into a data frame using lapply() and save the result to df_list.
 
+Concatenate all of the data frames in df_list into one data frame called students.
+```
+student_files  <- list.files(pattern = "exams_.*csv")
+df_list <- lapply(student_files,read_csv)
+students  <- bind_rows(df_list)
+nrow_students <- nrow(students)
+```
+There is a column for the scores on the fractions exam, and a column for the scores on the probability exam.
+We want to make each row an observation, so we want to transform this table to look like:
+Use gather to create a new table (still called students) that follows this structure. Then view the head() of students.
 
+We want to turn fractions and probability into variables, so those columns are the first two arguments to gather().
+We want to call that new column exam, so that’s our key.
+The values previously held in fractions and probability, we want to store in a column called score, so that’s the value.
+```
+original_col_names <- colnames(students)
+
+students<- students %>%
+   gather( 'fractions', 'probability' ,key = 'exam',value='score')
+   head(students)
+gathered_col_names <- colnames(students )
+exam_counts <- students%>%
+count(exam)
+exam_counts 
+```
