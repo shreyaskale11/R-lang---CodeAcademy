@@ -42,6 +42,12 @@ The pipe operator, or %>%, helps increase the readability of data frame code by 
 df %>%
   head()
 ```
+Filter the rows of artists where the genre is 'Rock' and spotify_monthly_listeners is greater than 20000000. Save the result to popular_rock_groups, and view it.
+```
+popular_rock_groups<-artists  %>%
+  filter(genre == 'Rock'&spotify_monthly_listeners>20000000 )
+popular_rock_groups
+```
 
 
 
