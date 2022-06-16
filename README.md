@@ -49,7 +49,31 @@ popular_rock_groups<-artists  %>%
 popular_rock_groups
 ```
 
+```
+korea_or_before_2000<-artists  %>%
+  filter(country == 'South Korea' | year_founded  < 2000)
+korea_or_before_2000
 
+```
+
+```{r}
+# filter rows with not !
+not_rock_groups<-artists %>% filter(!(genre == 'Rock'))
+
+not_rock_groups
+```
+
+```
+group_asc<- artists %>% arrange(group)
+group_asc
+
+```
+
+```{r}
+# arrange rows in descending order
+youtube_desc<- artists %>% arrange(desc(youtube_subscribers))
+youtube_desc
+```
 
 
 
