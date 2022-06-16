@@ -36,9 +36,12 @@ length(c(2,4,10,5,1)); # Outputs 5
 sum(5,15,10) #Outputs 30
 ```
 
+The pipe operator, or %>%, helps increase the readability of data frame code by piping the value on its left into the first argument of the function that follows it. 
 
-
-
+```
+df %>%
+  head()
+```
 
 
 
