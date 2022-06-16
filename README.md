@@ -74,10 +74,32 @@ group_asc
 youtube_desc<- artists %>% arrange(desc(youtube_subscribers))
 youtube_desc
 ```
-
-
-
-
+Update the call to mutate() by adding one last argument that adds a new column rank_change_13_to_16 that is the change in rank from 2013 to 2016 (rank_2016 - rank_2013).
+```
+dogs <- dogs %>%
+  mutate(avg_height = (height_low_inches + height_high_inches)/2,avg_weight = (weight_low_lbs  + weight_high_lbs)/2,rank_change_13_to_16 = (rank_2016 - rank_2013) )
+head(dogs)
+```
+dplyr’s transmute() function will add new columns while dropping the existing columns that may no longer be useful for your analysis. 
+```
+dogs <- dogs %>%
+  transmute(breed = breed,avg_height = (height_low_inches + height_high_inches)/2,
+         avg_weight = (weight_low_lbs + weight_high_lbs)/2,
+        rank_change_13_to_16 = rank_2016 - rank_2013)
+head(dogs)
+```
+save col name 
+```
+new_col_names <- colnames(dogs)
+new_col_names 
+```
+Update the name of avg_height to avg_height_inches, avg_weight to avg_weight_lbs, and rank_change_13_to_16 to popularity_change_13_to_16. Save the updated data frame to dogs.
+```
+dogs <- dogs %>%
+rename(avg_height_inches = avg_height , 
+ avg_weight_lbs = avg_weight , 
+  popularity_change_13_to_16 =rank_change_13_to_16 )
+```
 
 
 
